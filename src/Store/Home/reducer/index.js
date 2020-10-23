@@ -24,7 +24,7 @@ export const homeReducer = (state = initialState, action) => {
     case FETCH_EXPRESSION_FAILURE:
       return { ...state, isFetching: false, error: true }
     case SAVE_FORM_DATA:
-      return { ...state, formData: action.payload }
+      return { ...state, formData: action.payload.data }
     default:
       return state
   }

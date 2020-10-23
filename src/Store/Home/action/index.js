@@ -1,7 +1,7 @@
 export const FETCH_EXPRESSION_BEGIN = 'FETCH_EXPRESSION_BEGIN'
 export const FETCH_EXPRESSION_SUCCESS = 'FETCH_EXPRESSION_SUCCESS'
 export const FETCH_EXPRESSION_FAILURE = 'FETCH_EXPRESSION_FAILURE'
-export const SAVE_FORM_DATA = 'FETCH_EXPRESSION_BEGIN'
+export const SAVE_FORM_DATA = 'SAVE_FORM_DATA'
 
 const fetchInvestmentBegin = () => ({
   type: FETCH_EXPRESSION_BEGIN,
@@ -17,10 +17,16 @@ const fetchInvestmentFailure = (error) => ({
   payload: { error },
 })
 
-export const saveFormData = (data) => ({
+const saveFormData = (data) => ({
   type: SAVE_FORM_DATA,
   payload: { data },
 })
+
+export const saveForm = (data) => {
+  return (dispatch) => {
+    dispatch(saveFormData(data))
+  }
+}
 
 export const fetchInvestment = (formData) => {
   const interestRate = 0.00517
@@ -44,7 +50,6 @@ export const fetchInvestment = (formData) => {
         }
         dispatch(fetchInvestmentSuccess(res.result))
       })
-      .then()
       .catch((error) => {
         dispatch(fetchInvestmentFailure(error))
       })

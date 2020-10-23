@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchInvestment, saveFormData } from '../../Store/Home/action'
-import { transformMonthToYears } from '../../Helper'
+import { fetchInvestment, saveForm } from '../../Store/Home/action'
+import { transformMonthToYears, validateKeyValue } from '../../Helper'
 import Wrapper from '../Wrapper'
 import { Container, Title, Forms } from './styles'
 
@@ -27,15 +27,13 @@ function Form() {
     )
   })
 
-  useEffect(() => {
-    const validateForm = () => {
-      const isValid = !Object.values(formData).every(
-        (key) => key !== null && key !== '' && key !== 0
-      )
-      setValidForm(isValid)
-    }
+  const validateForm = (data) => {
+    return validateKeyValue(data)
+  }
 
-    validateForm()
+  useEffect(() => {
+    const isValid = validateForm(formData)
+    setValidForm(isValid)
   }, [formData])
 
   const handleChange = (event) => {
@@ -49,7 +47,7 @@ function Form() {
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(fetchInvestment(formData))
-    dispatch(saveFormData(formData))
+    dispatch(saveForm(formData))
     history.push('/result')
   }
   return (

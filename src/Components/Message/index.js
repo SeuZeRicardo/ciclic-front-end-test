@@ -1,11 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Wrapper from '../Wrapper'
+import { Container, Title } from './styles'
 
 function Message({ text }) {
   return (
-    <>
-      <p>{text}</p>
-    </>
+    <Container>
+      <Wrapper>
+        <Title>{text}</Title>
+      </Wrapper>
+    </Container>
   )
 }
 
