@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { fetchInvestment } from '../../Store/Home/action'
+import { fetchInvestment, saveFormData } from '../../Store/Home/action'
 import { transformMonthToYears } from '../../Helper'
 import Wrapper from '../Wrapper'
 import { Container, Title, Forms } from './styles'
@@ -49,6 +49,7 @@ function Form() {
   const handleSubmit = (event) => {
     event.preventDefault()
     dispatch(fetchInvestment(formData))
+    dispatch(saveFormData(formData))
     history.push('/result')
   }
   return (
