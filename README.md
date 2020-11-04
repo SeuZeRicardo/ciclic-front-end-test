@@ -7,6 +7,7 @@ This Project is using the following technologies.
 - [Styled-Components](https://styled-components.com/)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+- [React Redux](https://react-redux.js.org/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
